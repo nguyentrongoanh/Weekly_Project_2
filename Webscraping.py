@@ -156,7 +156,7 @@ def scrape_tiki(url='https://tiki.vn/may-tinh-bang/c1794?src=c.1789.hamburger_me
         print(page)
         
         #Avoid getting banned by Tiki
-        sleep(3)
+        sleep(1)
         
     # Return data list
     return data

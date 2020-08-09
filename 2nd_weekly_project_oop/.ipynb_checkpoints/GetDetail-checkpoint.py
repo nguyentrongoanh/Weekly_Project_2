@@ -50,19 +50,14 @@ def get_all_categories(categories):
         get_all_categories(sub_categories)
 
 def get_product_details(urls, save_db=True):
-#     urls = cur.execute("""SELECT DISTINCT url
-#         FROM categories
-#         WHERE id
-#         NOT IN (
-#             SELECT DISTINCT parent_id 
-#             FROM categories
-#             WHERE parent_id NOTNULL)
-#         AND parent_id NOTNULL""").fetchall()
     for url in urls:
-         for each in (scrape_tiki(url[0])):
-            product = Product(each['Category'], each['Name'], each['Final_price'], each['Regular_price'],
-                                 each['Discount_percent'], each['Installment'], each['Cross_border'],
-                                 each['Sponsor'], each['Reviews'], each['Rating'], each['Rating_by_stars'],
-                                 each['Url'], each['Image_url'])
-            if save_db:
-                product.save_into_db()
+        try:
+             for each in (scrape_tiki(url[0])):
+                product = Product(each['Category'], each['Name'], each['Final_price'], each['Regular_price'],
+                                     each['Discount_percent'], each['Installment'], each['Cross_border'],
+                                     each['Sponsor'], each['Reviews'], each['Rating'], each['Rating_by_stars'],
+                                     each['Url'], each['Image_url'])
+                if save_db:
+                    product.save_into_db()
+        except err:
+            print("CANNOT SCRAPE PRODUCT ", err)

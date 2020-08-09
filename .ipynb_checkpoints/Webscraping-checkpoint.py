@@ -17,7 +17,7 @@ def get_url(url):
     # return soup object
     return soup
 
-def scrape_tiki(url='https://tiki.vn/laptop/c8095?src=c.1846.hamburger_menu_fly_out_banner'):
+def scrape_tiki(url='https://tiki.vn/may-tinh-bang/c1794?src=c.1789.hamburger_menu_fly_out_banner'):
     """Scrape info of products in Laptop-PC"""
     
     # Begin with page 1
@@ -156,13 +156,13 @@ def scrape_tiki(url='https://tiki.vn/laptop/c8095?src=c.1846.hamburger_menu_fly_
         print(page)
         
         #Avoid getting banned by Tiki
-        sleep(3)
+        sleep(1)
         
     # Return data list
     return data
 
 # # Call scrape_tiki function
-# data = scrape_tiki()
+data = scrape_tiki()
 
 # # Create a data frame by pandas
 # product_info = pd.DataFrame(data = data, columns = data[0].keys())
